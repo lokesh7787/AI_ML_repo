@@ -1,0 +1,120 @@
+-- CREATE TABLE IF NOT EXISTS Channel(
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     channel_id VARCHAR(255) NOT NULL,
+--     channel_name VARCHAR(255) NOT NULL,
+--     channel_description TEXT,
+--     channel_publishedAt DATETIME,
+--     playlists_id VARCHAR(255) NOT NULL,
+--     channel_sub_count INT,
+--     channel_viewCount INT,
+--     channel_videoCount INT
+-- );
+-- CREATE TABLE IF NOT EXISTS Comment(
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     Comment_Id VARCHAR(255) NOT NULL,
+--     Comment_Text TEXT,
+--     Comment_Author VARCHAR(255) NOT NULL,
+--     Comment_PublishedAt DATE,
+--     Channel_id VARCHAR(255) NOT NULL,
+--     video_id VARCHAR(255) NOT NULL
+-- );
+-- CREATE TABLE IF NOT EXISTS Video(
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     Video_Id VARCHAR(255) NOT NULL,
+--     Video_Name VARCHAR(255) NOT NULL,
+--     Video_Description TEXT,
+--     Channel_id VARCHAR(255) NOT NULL,
+--     commentCount VARCHAR(255) NOT NULL,
+--     view_Count VARCHAR(255) NOT NULL,
+--     like_count VARCHAR(255) NOT NULL,
+--     dis_like_Count VARCHAR(255) NOT NULL,
+--     durations VARCHAR(255) NOT NULL,
+--     published_date DATETIME
+-- );
+-- SELECT *
+-- FROM Video;
+-- SELECT *
+-- FROM Channel;
+-- SELECT *
+-- FROM Comment;
+-- TRUNCATE TABLE Video;
+-- TRUNCATE TABLE Channel;
+-- TRUNCATE TABLE Comment;
+-- DROP TABLE Video;
+-- DROP TABLE Channel;
+-- DROP TABLE Comment;
+-- SELECT *
+-- from Comment;
+-- DELETE from Channel
+-- where channel_name = "Aaivu";
+-- DELETE FROM Video WHERE Video_Id="_aTbMGRK-Ys";
+-- DELETE from Comment
+-- where Comment_Author = '@GoogleDevelopers';
+-- SELECT channel_name FROM Channel WHERE channel_viewCount >= ALL(SELECT channel_viewCount FROM Channel);
+-- SELECT Video.Video_Name AS videoName,
+--     Channel.channel_name AS channelName
+-- FROM Video
+--     JOIN Channel ON Channel.channel_id = Video.Channel_id;
+-- SELECT channel_name AS channelName, channel_videoCount FROM Channel  ORDER BY channel_videoCount DESC LIMIT 3;
+-- SELECT Video.Video_Name AS videoName,
+--     Channel.channel_name AS channelName
+-- FROM Video
+--     JOIN Channel ON Channel.channel_id = Video.Channel_id
+-- ORDER BY Video.view_Count DESC
+-- LIMIT 10;
+-- SELECT commentCount AS comment_Count , Video_Name FROM Video;
+-- SELECT Video.like_count AS like_count,
+--     Channel.channel_name AS channel_name
+-- FROM Video
+--     JOIN Channel ON Channel.channel_id = Video.Channel_id
+-- ORDER BY Video.like_count DESC
+-- LIMIT 3;
+-- SELECT Video_Name,
+--     (
+--         ROUND(SUM(Video.like_count + Video.dis_like_Count), 0)
+--     ) AS total_likes_dislike
+-- FROM Video
+-- GROUP BY Video_Name;
+-- SELECT channel_viewCount AS Total_view_Count,
+--     channel_name
+-- FROM Channel;
+-- SELECT Video.Video_Name,
+--     Channel.channel_name,
+--     Video.published_date
+-- FROM Video
+--     JOIN Channel ON Channel.channel_id = Video.Channel_id
+-- WHERE published_date BETWEEN '2022-01-01' AND '2022-12-31';
+-- SELECT Channel.channel_name AS channel_name,
+--     (
+--         AVG(
+--             IFNULL(
+--                 CAST(
+--                     SUBSTRING_INDEX(
+--                         SUBSTRING_INDEX(Video.durations, 'M', 1),
+--                         'PT',
+--                         -1
+--                     ) AS UNSIGNED
+--                 ) * 60,
+--                 0
+--             ) + IFNULL(
+--                 CAST(
+--                     SUBSTRING_INDEX(
+--                         SUBSTRING_INDEX(Video.durations, 'S', 1),
+--                         'M',
+--                         -1
+--                     ) AS UNSIGNED
+--                 ),
+--                 0
+--             )
+--         )
+--     ) AS Avg_duration_seconds
+-- FROM Video
+--     JOIN Channel ON Channel.channel_id = Video.Channel_id
+-- GROUP BY Channel.channel_name
+-- ORDER BY Avg_duration_seconds DESC
+SELECT Video.commentCount AS no_of_comments,
+    Channel.channel_name
+FROM Video
+    JOIN Channel ON Channel.channel_id = Video.Channel_id
+ORDER BY CAST(no_of_comments AS SIGNED) DESC
+LIMIT 10
