@@ -6,7 +6,7 @@ from EDA import getFinalDataSet
 
 # Title of the Dashboard
 st.title("Industrial Human Resource Geo-Visualization")
-st.sidebar.title("Filter Options")
+st.sidebar.title("Filter Options").
 
 
 df = getFinalDataSet()
