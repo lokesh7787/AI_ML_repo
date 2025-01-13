@@ -131,3 +131,6 @@
 
 ![Screenshot 2025-01-13 at 4 50 09 PM](https://github.com/user-attachments/assets/caedd4e2-455f-4530-a5ef-cbbdcbd84828)
 
+# Linkedin post video 
+
+ 1. https://www.linkedin.com/feed/update/urn:li:activity:7284533926147080192/
