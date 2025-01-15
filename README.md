@@ -45,7 +45,7 @@
      1. streamlit run dashboard.py
 
   # Dataset Details
-  1. Source: [Specify dataset source, e.g., Census of India 2011]
+  1. Source: Census of India 2011
 
      
   2. Key Fields:
